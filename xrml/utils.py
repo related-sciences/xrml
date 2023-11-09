@@ -453,24 +453,6 @@ def _explain(
     tree_shap_check_additivity: bool,
     **kwargs: Any,
 ) -> Dataset:
-    """
-    Add per-sample, per-feature, model-specific weights to dataset (e.g. SHAP values)
-
-    :param model: model to explain. Can be a sklearn pipeline. Final step can be a CV,
-                  in which case explain will use the best estimator.
-    :param shap_mode: see: https://github.com/related-sciences/facets/issues/938.
-                      Intuition: `true-to-data`, feature contribution are shared across correlated
-                      features (even if some features are not used by the particular model), useful
-                      when you care more about insights within the data than a particular model.
-                      `true-to-model` tries to break correlation, gives contribution to the
-                      features actually used by the model, useful when you care about this
-                      particular model.
-    :param tree_shap_check_additivity: control validation check that the sum of the SHAP values
-                    equals the output of the model.
-                    See: https://github.com/slundberg/shap/issues/1098#issuecomment-599622440 and
-                    other issues related to check_additivity.
-    """
-
     def get_shap_values(ds: Dataset) -> Dataset:
         # NOTE: labels can be NaN here, and will be included
         X, Y = _split(ds, squeeze_y=True)

@@ -66,4 +66,4 @@ ds
 <img src="doc/images/ds.png">
 
 
-Now it's convenient to access all this information via the generated `Dataset`, and some examples of this are in [notebook/examples.ipynb](notebook/examples.ipynb).
+Now it's convenient to access all this information via the generated `Dataset`, and some examples of this are in [examples.ipynb](doc/notebook/examples.ipynb).

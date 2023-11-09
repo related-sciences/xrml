@@ -36,7 +36,6 @@ repository = "https://github.com/related-sciences/xrml"
 requires = ["setuptools >= 45", "setuptools_scm[toml] >= 6.2"]
 
 [tool.setuptools_scm]
-packages = ["xrml"]
 
 [tool.ruff]
 target-version = "py310"

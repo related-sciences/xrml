@@ -491,7 +491,7 @@ def _explain(
             if not isinstance(transformed_features, pd.DataFrame):
                 raise ValueError(
                     f"Pipeline for model {model} did not produce a DataFrame after transform. "
-                    "This is necessary for explanations; model pipeline:\n{pipeline}}"
+                    f"This is necessary for explanations; model pipeline:\n{pipeline}"
                 )
             if (
                 invalid_features := transformed_features.columns.difference(

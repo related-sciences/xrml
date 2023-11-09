@@ -8,11 +8,11 @@ import xarray as xr
 from pandas import DataFrame
 from shap import Explanation
 from sklearn.datasets import load_breast_cancer
+from sklearn.ensemble import GradientBoostingClassifier
 from sklearn.feature_selection import SelectKBest, f_classif
 from sklearn.linear_model import LogisticRegression
 from sklearn.preprocessing import StandardScaler
 from xarray import Dataset
-from xgboost import XGBClassifier
 
 import xrml as xl
 from xrml.utils import Model, make_pandas_pipeline, precision_at_k, recall_at_k
@@ -57,12 +57,8 @@ def estimator_fn_2_ests() -> list[Model]:
         ),
         Model(
             "gbm",
-            "XGBoost",
-            make_pandas_pipeline(
-                XGBClassifier(
-                    random_state=0, use_label_encoder=False, eval_metric="logloss"
-                )
-            ),
+            "Gradient Boosting Classifier",
+            make_pandas_pipeline(GradientBoostingClassifier(random_state=0)),
         ),
     ]
 
@@ -166,6 +162,7 @@ def test_run_explain(
         model=model,
         shap_mode=shap_mode,
         method=method,
+        tree_shap_check_additivity=False,
         **explainer_kwargs,
     )
     assert ds.shap_value.dims == ("models", "index", "features")
